@@ -113,7 +113,7 @@ function LoadingScreen() {
           />
         </div>
         <h1 className="text-2xl font-extrabold">Huambo Calunga II</h1>
-        <p className="mt-2 text-sm text-hero-foreground/70">Educar hoje. Transformar o futuro.</p>
+        <p className="mt-2 text-sm text-hero-foreground/70">A tua escola na palma da mão.</p>
         <div className="mx-auto mt-8 h-1 w-48 overflow-hidden rounded-full bg-hero-foreground/15">
           <div className="loading-bar h-full w-20 rounded-full bg-brand-soft" />
         </div>
@@ -221,11 +221,10 @@ function HomePage() {
   useEffect(() => {
     const image = new Image();
     image.src = heroImage;
-    const done = () => window.setTimeout(() => setLoading(false), 450);
-    if (image.complete) done();
-    else image.addEventListener("load", done, { once: true });
-    const fallback = window.setTimeout(() => setLoading(false), 1400);
-    return () => window.clearTimeout(fallback);
+    // O ecrã de arranque fica visível durante 4 segundos completos, independentemente
+    // de a imagem de fundo já estar pronta antes disso.
+    const timer = window.setTimeout(() => setLoading(false), 4000);
+    return () => window.clearTimeout(timer);
   }, []);
   if (loading) return <LoadingScreen />;
   const visible = filter === "Todas" ? news : news.filter((item) => item.category === filter);
