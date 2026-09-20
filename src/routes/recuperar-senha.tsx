@@ -12,6 +12,7 @@ import { InputOTP, InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp
 import {
   AuthLayout,
   AuthVisualPanel,
+  AuthMobileBanner,
   PasswordInput,
   FieldError,
   FormBanner,
@@ -88,8 +89,8 @@ function StepHeader({
 }) {
   return (
     <>
-      <span className="grid size-12 place-items-center rounded-lg bg-secondary text-primary">
-        <Icon className="size-5" aria-hidden="true" />
+      <span className="grid size-14 place-items-center rounded-2xl bg-gradient-to-br from-primary to-brand-soft text-primary-foreground shadow-lg shadow-primary/25">
+        <Icon className="size-6" aria-hidden="true" />
       </span>
       <h1 className="mt-5 text-2xl font-extrabold text-foreground">{title}</h1>
       <p className="mt-2 text-sm leading-6 text-muted-foreground">{description}</p>
@@ -186,7 +187,11 @@ function RecoverPage() {
         />
       }
     >
-      <div className="rounded-lg border border-border bg-card p-7 portal-shadow sm:p-8">
+      <AuthMobileBanner
+        eyebrow="Recuperação de acesso"
+        title="Vamos ajudar-te a voltar a entrar."
+      />
+      <div className="rounded-2xl border border-border bg-card p-7 portal-shadow sm:p-8">
         {step === "identify" && (
           <>
             <StepHeader
@@ -375,7 +380,7 @@ function RecoverPage() {
 
         {step === "success" && (
           <div className="text-center">
-            <span className="mx-auto grid size-12 place-items-center rounded-lg bg-secondary text-primary">
+            <span className="mx-auto grid size-14 place-items-center rounded-2xl bg-gradient-to-br from-primary to-brand-soft text-primary-foreground shadow-lg shadow-primary/25">
               <CheckCircle2 className="size-6" aria-hidden="true" />
             </span>
             <h1 className="mt-5 text-2xl font-extrabold text-foreground">

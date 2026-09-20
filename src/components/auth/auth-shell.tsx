@@ -93,6 +93,29 @@ export function AuthVisualPanel({
   );
 }
 
+/** Compact image banner shown above the form on small screens (the wide AuthVisualPanel is desktop-only). */
+export function AuthMobileBanner({ eyebrow, title }: { eyebrow: string; title: string }) {
+  return (
+    <div className="relative mb-6 overflow-hidden rounded-2xl portal-shadow lg:hidden">
+      <img
+        src={heroImage}
+        alt="Estudantes num pátio escolar"
+        width={800}
+        height={420}
+        className="h-36 w-full object-cover object-[68%_center] sm:h-44"
+        fetchPriority="high"
+      />
+      <div className="hero-overlay absolute inset-0" />
+      <div className="absolute inset-0 flex flex-col justify-end p-5">
+        <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-brand-soft">
+          {eyebrow}
+        </p>
+        <h2 className="mt-1 text-lg font-extrabold leading-tight text-hero-foreground">{title}</h2>
+      </div>
+    </div>
+  );
+}
+
 /** Generic full-height two-column layout: visual panel + centered form column. */
 export function AuthLayout({
   visual,
@@ -110,8 +133,16 @@ export function AuthLayout({
       <AuthTopBar backTo={backTo} backLabel={backLabel} />
       <div className="grid lg:grid-cols-2">
         {visual}
-        <main className="grid place-items-center px-4 py-12 sm:px-6 lg:px-10">
-          <div className="w-full max-w-md">{children}</div>
+        <main className="relative grid place-items-center overflow-hidden px-4 py-10 sm:px-6 sm:py-12 lg:px-10">
+          <div
+            className="pointer-events-none absolute -top-24 -left-20 size-72 rounded-full bg-brand-soft/25 blur-3xl"
+            aria-hidden="true"
+          />
+          <div
+            className="pointer-events-none absolute -bottom-24 -right-16 size-72 rounded-full bg-primary/10 blur-3xl"
+            aria-hidden="true"
+          />
+          <div className="relative w-full max-w-md">{children}</div>
         </main>
       </div>
     </div>

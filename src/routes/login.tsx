@@ -12,6 +12,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import {
   AuthLayout,
   AuthVisualPanel,
+  AuthMobileBanner,
   PasswordInput,
   FieldError,
   FormBanner,
@@ -89,9 +90,10 @@ function LoginPage() {
         />
       }
     >
-      <div className="rounded-lg border border-border bg-card p-7 portal-shadow sm:p-8">
-        <span className="grid size-12 place-items-center rounded-lg bg-secondary text-primary">
-          <LockKeyhole className="size-5" aria-hidden="true" />
+      <AuthMobileBanner eyebrow="Área reservada" title="A tua escola, sempre à mão." />
+      <div className="rounded-2xl border border-border bg-card p-7 portal-shadow sm:p-8">
+        <span className="grid size-14 place-items-center rounded-2xl bg-gradient-to-br from-primary to-brand-soft text-primary-foreground shadow-lg shadow-primary/25">
+          <LockKeyhole className="size-6" aria-hidden="true" />
         </span>
         <h1 className="mt-5 text-2xl font-extrabold text-foreground">Bem-vindo de volta!</h1>
         <p className="mt-2 text-sm leading-6 text-muted-foreground">
