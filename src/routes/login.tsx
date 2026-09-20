@@ -3,12 +3,13 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { GraduationCap, LoaderCircle, LockKeyhole, LogIn } from "lucide-react";
+import { LoaderCircle, LockKeyhole, LogIn } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
+import logoHuambo from "@/assets/logo-huambo-calunga.jpg";
 import {
   AuthLayout,
   AuthVisualPanel,
@@ -57,8 +58,13 @@ function AccessingOverlay() {
   return (
     <div className="fixed inset-0 z-50 grid place-items-center bg-brand-deep/95 px-6 backdrop-blur-sm">
       <div className="flex flex-col items-center text-center">
-        <span className="grid size-16 place-items-center rounded-2xl bg-hero-foreground/10">
-          <GraduationCap className="size-8 text-hero-foreground" aria-hidden="true" />
+        <span className="grid size-16 place-items-center overflow-hidden rounded-full bg-hero-foreground/10">
+          <img
+            src={logoHuambo}
+            alt=""
+            className="size-14 rounded-full object-cover"
+            aria-hidden="true"
+          />
         </span>
         <LoaderCircle
           className="mt-6 size-8 animate-spin text-hero-foreground"

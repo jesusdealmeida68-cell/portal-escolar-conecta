@@ -104,8 +104,13 @@ function LoadingScreen() {
       aria-live="polite"
     >
       <div className="w-[min(82vw,360px)] text-center">
-        <div className="mx-auto mb-6 grid size-20 place-items-center rounded-lg border border-hero-foreground/20 bg-hero-foreground/10">
-          <GraduationCap className="size-10" />
+        <div className="mx-auto mb-6 grid size-20 place-items-center overflow-hidden rounded-full border border-hero-foreground/20 bg-hero-foreground/10">
+          <img
+            src={logoHuambo}
+            alt=""
+            className="size-16 rounded-full object-cover"
+            aria-hidden="true"
+          />
         </div>
         <h1 className="text-2xl font-extrabold">Huambo Calunga II</h1>
         <p className="mt-2 text-sm text-hero-foreground/70">Educar hoje. Transformar o futuro.</p>
