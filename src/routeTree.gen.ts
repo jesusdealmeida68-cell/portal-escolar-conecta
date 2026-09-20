@@ -14,6 +14,14 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as PrivacidadeRouteImport } from './routes/privacidade'
 import { Route as RecuperarSenhaRouteImport } from './routes/recuperar-senha'
 import { Route as TermosRouteImport } from './routes/termos'
+import { Route as AlunoIndexRouteImport } from './routes/aluno/index'
+import { Route as AlunoFaltasRouteImport } from './routes/aluno/faltas'
+import { Route as AlunoHorariosRouteImport } from './routes/aluno/horarios'
+import { Route as AlunoNotasRouteImport } from './routes/aluno/notas'
+import { Route as AlunoNotificacoesRouteImport } from './routes/aluno/notificacoes'
+import { Route as AlunoPropinasRouteImport } from './routes/aluno/propinas'
+import { Route as AlunoRankingRouteImport } from './routes/aluno/ranking'
+import { Route as AlunoSenhaRouteImport } from './routes/aluno/senha'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -40,6 +48,46 @@ const TermosRoute = TermosRouteImport.update({
   path: '/termos',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AlunoIndexRoute = AlunoIndexRouteImport.update({
+  id: '/aluno/',
+  path: '/aluno/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AlunoFaltasRoute = AlunoFaltasRouteImport.update({
+  id: '/aluno/faltas',
+  path: '/aluno/faltas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AlunoHorariosRoute = AlunoHorariosRouteImport.update({
+  id: '/aluno/horarios',
+  path: '/aluno/horarios',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AlunoNotasRoute = AlunoNotasRouteImport.update({
+  id: '/aluno/notas',
+  path: '/aluno/notas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AlunoNotificacoesRoute = AlunoNotificacoesRouteImport.update({
+  id: '/aluno/notificacoes',
+  path: '/aluno/notificacoes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AlunoPropinasRoute = AlunoPropinasRouteImport.update({
+  id: '/aluno/propinas',
+  path: '/aluno/propinas',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AlunoRankingRoute = AlunoRankingRouteImport.update({
+  id: '/aluno/ranking',
+  path: '/aluno/ranking',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AlunoSenhaRoute = AlunoSenhaRouteImport.update({
+  id: '/aluno/senha',
+  path: '/aluno/senha',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -47,6 +95,14 @@ export interface FileRoutesByFullPath {
   '/privacidade': typeof PrivacidadeRoute
   '/recuperar-senha': typeof RecuperarSenhaRoute
   '/termos': typeof TermosRoute
+  '/aluno/faltas': typeof AlunoFaltasRoute
+  '/aluno/horarios': typeof AlunoHorariosRoute
+  '/aluno/notas': typeof AlunoNotasRoute
+  '/aluno/notificacoes': typeof AlunoNotificacoesRoute
+  '/aluno/propinas': typeof AlunoPropinasRoute
+  '/aluno/ranking': typeof AlunoRankingRoute
+  '/aluno/senha': typeof AlunoSenhaRoute
+  '/aluno/': typeof AlunoIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +110,14 @@ export interface FileRoutesByTo {
   '/privacidade': typeof PrivacidadeRoute
   '/recuperar-senha': typeof RecuperarSenhaRoute
   '/termos': typeof TermosRoute
+  '/aluno/faltas': typeof AlunoFaltasRoute
+  '/aluno/horarios': typeof AlunoHorariosRoute
+  '/aluno/notas': typeof AlunoNotasRoute
+  '/aluno/notificacoes': typeof AlunoNotificacoesRoute
+  '/aluno/propinas': typeof AlunoPropinasRoute
+  '/aluno/ranking': typeof AlunoRankingRoute
+  '/aluno/senha': typeof AlunoSenhaRoute
+  '/aluno': typeof AlunoIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,12 +126,46 @@ export interface FileRoutesById {
   '/privacidade': typeof PrivacidadeRoute
   '/recuperar-senha': typeof RecuperarSenhaRoute
   '/termos': typeof TermosRoute
+  '/aluno/faltas': typeof AlunoFaltasRoute
+  '/aluno/horarios': typeof AlunoHorariosRoute
+  '/aluno/notas': typeof AlunoNotasRoute
+  '/aluno/notificacoes': typeof AlunoNotificacoesRoute
+  '/aluno/propinas': typeof AlunoPropinasRoute
+  '/aluno/ranking': typeof AlunoRankingRoute
+  '/aluno/senha': typeof AlunoSenhaRoute
+  '/aluno/': typeof AlunoIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/privacidade' | '/recuperar-senha' | '/termos'
+  fullPaths:
+    | '/'
+    | '/login'
+    | '/privacidade'
+    | '/recuperar-senha'
+    | '/termos'
+    | '/aluno/faltas'
+    | '/aluno/horarios'
+    | '/aluno/notas'
+    | '/aluno/notificacoes'
+    | '/aluno/propinas'
+    | '/aluno/ranking'
+    | '/aluno/senha'
+    | '/aluno/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/privacidade' | '/recuperar-senha' | '/termos'
+  to:
+    | '/'
+    | '/login'
+    | '/privacidade'
+    | '/recuperar-senha'
+    | '/termos'
+    | '/aluno/faltas'
+    | '/aluno/horarios'
+    | '/aluno/notas'
+    | '/aluno/notificacoes'
+    | '/aluno/propinas'
+    | '/aluno/ranking'
+    | '/aluno/senha'
+    | '/aluno'
   id:
     | '__root__'
     | '/'
@@ -75,6 +173,14 @@ export interface FileRouteTypes {
     | '/privacidade'
     | '/recuperar-senha'
     | '/termos'
+    | '/aluno/faltas'
+    | '/aluno/horarios'
+    | '/aluno/notas'
+    | '/aluno/notificacoes'
+    | '/aluno/propinas'
+    | '/aluno/ranking'
+    | '/aluno/senha'
+    | '/aluno/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -83,6 +189,14 @@ export interface RootRouteChildren {
   PrivacidadeRoute: typeof PrivacidadeRoute
   RecuperarSenhaRoute: typeof RecuperarSenhaRoute
   TermosRoute: typeof TermosRoute
+  AlunoFaltasRoute: typeof AlunoFaltasRoute
+  AlunoHorariosRoute: typeof AlunoHorariosRoute
+  AlunoNotasRoute: typeof AlunoNotasRoute
+  AlunoNotificacoesRoute: typeof AlunoNotificacoesRoute
+  AlunoPropinasRoute: typeof AlunoPropinasRoute
+  AlunoRankingRoute: typeof AlunoRankingRoute
+  AlunoSenhaRoute: typeof AlunoSenhaRoute
+  AlunoIndexRoute: typeof AlunoIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -122,6 +236,62 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TermosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/aluno/': {
+      id: '/aluno/'
+      path: '/aluno'
+      fullPath: '/aluno/'
+      preLoaderRoute: typeof AlunoIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/aluno/faltas': {
+      id: '/aluno/faltas'
+      path: '/aluno/faltas'
+      fullPath: '/aluno/faltas'
+      preLoaderRoute: typeof AlunoFaltasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/aluno/horarios': {
+      id: '/aluno/horarios'
+      path: '/aluno/horarios'
+      fullPath: '/aluno/horarios'
+      preLoaderRoute: typeof AlunoHorariosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/aluno/notas': {
+      id: '/aluno/notas'
+      path: '/aluno/notas'
+      fullPath: '/aluno/notas'
+      preLoaderRoute: typeof AlunoNotasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/aluno/notificacoes': {
+      id: '/aluno/notificacoes'
+      path: '/aluno/notificacoes'
+      fullPath: '/aluno/notificacoes'
+      preLoaderRoute: typeof AlunoNotificacoesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/aluno/propinas': {
+      id: '/aluno/propinas'
+      path: '/aluno/propinas'
+      fullPath: '/aluno/propinas'
+      preLoaderRoute: typeof AlunoPropinasRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/aluno/ranking': {
+      id: '/aluno/ranking'
+      path: '/aluno/ranking'
+      fullPath: '/aluno/ranking'
+      preLoaderRoute: typeof AlunoRankingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/aluno/senha': {
+      id: '/aluno/senha'
+      path: '/aluno/senha'
+      fullPath: '/aluno/senha'
+      preLoaderRoute: typeof AlunoSenhaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -131,6 +301,14 @@ const rootRouteChildren: RootRouteChildren = {
   PrivacidadeRoute: PrivacidadeRoute,
   RecuperarSenhaRoute: RecuperarSenhaRoute,
   TermosRoute: TermosRoute,
+  AlunoFaltasRoute: AlunoFaltasRoute,
+  AlunoHorariosRoute: AlunoHorariosRoute,
+  AlunoNotasRoute: AlunoNotasRoute,
+  AlunoNotificacoesRoute: AlunoNotificacoesRoute,
+  AlunoPropinasRoute: AlunoPropinasRoute,
+  AlunoRankingRoute: AlunoRankingRoute,
+  AlunoSenhaRoute: AlunoSenhaRoute,
+  AlunoIndexRoute: AlunoIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
