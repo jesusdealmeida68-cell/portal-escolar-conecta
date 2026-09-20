@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AlunoRouteImport } from './routes/aluno'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as PrivacidadeRouteImport } from './routes/privacidade'
+import { Route as ProfessorRouteImport } from './routes/professor'
 import { Route as RecuperarSenhaRouteImport } from './routes/recuperar-senha'
 import { Route as TermosRouteImport } from './routes/termos'
 import { Route as AlunoIndexRouteImport } from './routes/aluno.index'
@@ -23,6 +24,13 @@ import { Route as AlunoNotificacoesRouteImport } from './routes/aluno.notificaco
 import { Route as AlunoPropinasRouteImport } from './routes/aluno.propinas'
 import { Route as AlunoRankingRouteImport } from './routes/aluno.ranking'
 import { Route as AlunoTrocarSenhaRouteImport } from './routes/aluno.trocar-senha'
+import { Route as ProfessorIndexRouteImport } from './routes/professor.index'
+import { Route as ProfessorHorarioRouteImport } from './routes/professor.horario'
+import { Route as ProfessorLancarNotasRouteImport } from './routes/professor.lancar-notas'
+import { Route as ProfessorNotasRouteImport } from './routes/professor.notas'
+import { Route as ProfessorPerfilRouteImport } from './routes/professor.perfil'
+import { Route as ProfessorTurmasRouteImport } from './routes/professor.turmas'
+import { Route as ProfessorTurmasTurmaIdRouteImport } from './routes/professor.turmas.$turmaId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -42,6 +50,11 @@ const LoginRoute = LoginRouteImport.update({
 const PrivacidadeRoute = PrivacidadeRouteImport.update({
   id: '/privacidade',
   path: '/privacidade',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfessorRoute = ProfessorRouteImport.update({
+  id: '/professor',
+  path: '/professor',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RecuperarSenhaRoute = RecuperarSenhaRouteImport.update({
@@ -94,12 +107,48 @@ const AlunoTrocarSenhaRoute = AlunoTrocarSenhaRouteImport.update({
   path: '/trocar-senha',
   getParentRoute: () => AlunoRoute,
 } as any)
+const ProfessorIndexRoute = ProfessorIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ProfessorRoute,
+} as any)
+const ProfessorHorarioRoute = ProfessorHorarioRouteImport.update({
+  id: '/horario',
+  path: '/horario',
+  getParentRoute: () => ProfessorRoute,
+} as any)
+const ProfessorLancarNotasRoute = ProfessorLancarNotasRouteImport.update({
+  id: '/lancar-notas',
+  path: '/lancar-notas',
+  getParentRoute: () => ProfessorRoute,
+} as any)
+const ProfessorNotasRoute = ProfessorNotasRouteImport.update({
+  id: '/notas',
+  path: '/notas',
+  getParentRoute: () => ProfessorRoute,
+} as any)
+const ProfessorPerfilRoute = ProfessorPerfilRouteImport.update({
+  id: '/perfil',
+  path: '/perfil',
+  getParentRoute: () => ProfessorRoute,
+} as any)
+const ProfessorTurmasRoute = ProfessorTurmasRouteImport.update({
+  id: '/turmas',
+  path: '/turmas',
+  getParentRoute: () => ProfessorRoute,
+} as any)
+const ProfessorTurmasTurmaIdRoute = ProfessorTurmasTurmaIdRouteImport.update({
+  id: '/$turmaId',
+  path: '/$turmaId',
+  getParentRoute: () => ProfessorTurmasRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/aluno': typeof AlunoRouteWithChildren
   '/login': typeof LoginRoute
   '/privacidade': typeof PrivacidadeRoute
+  '/professor': typeof ProfessorRouteWithChildren
   '/recuperar-senha': typeof RecuperarSenhaRoute
   '/termos': typeof TermosRoute
   '/aluno/faltas': typeof AlunoFaltasRoute
@@ -109,7 +158,14 @@ export interface FileRoutesByFullPath {
   '/aluno/propinas': typeof AlunoPropinasRoute
   '/aluno/ranking': typeof AlunoRankingRoute
   '/aluno/trocar-senha': typeof AlunoTrocarSenhaRoute
+  '/professor/horario': typeof ProfessorHorarioRoute
+  '/professor/lancar-notas': typeof ProfessorLancarNotasRoute
+  '/professor/notas': typeof ProfessorNotasRoute
+  '/professor/perfil': typeof ProfessorPerfilRoute
+  '/professor/turmas': typeof ProfessorTurmasRouteWithChildren
   '/aluno/': typeof AlunoIndexRoute
+  '/professor/': typeof ProfessorIndexRoute
+  '/professor/turmas/$turmaId': typeof ProfessorTurmasTurmaIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -124,7 +180,14 @@ export interface FileRoutesByTo {
   '/aluno/propinas': typeof AlunoPropinasRoute
   '/aluno/ranking': typeof AlunoRankingRoute
   '/aluno/trocar-senha': typeof AlunoTrocarSenhaRoute
+  '/professor/horario': typeof ProfessorHorarioRoute
+  '/professor/lancar-notas': typeof ProfessorLancarNotasRoute
+  '/professor/notas': typeof ProfessorNotasRoute
+  '/professor/perfil': typeof ProfessorPerfilRoute
+  '/professor/turmas': typeof ProfessorTurmasRouteWithChildren
   '/aluno': typeof AlunoIndexRoute
+  '/professor': typeof ProfessorIndexRoute
+  '/professor/turmas/$turmaId': typeof ProfessorTurmasTurmaIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -132,6 +195,7 @@ export interface FileRoutesById {
   '/aluno': typeof AlunoRouteWithChildren
   '/login': typeof LoginRoute
   '/privacidade': typeof PrivacidadeRoute
+  '/professor': typeof ProfessorRouteWithChildren
   '/recuperar-senha': typeof RecuperarSenhaRoute
   '/termos': typeof TermosRoute
   '/aluno/faltas': typeof AlunoFaltasRoute
@@ -141,7 +205,14 @@ export interface FileRoutesById {
   '/aluno/propinas': typeof AlunoPropinasRoute
   '/aluno/ranking': typeof AlunoRankingRoute
   '/aluno/trocar-senha': typeof AlunoTrocarSenhaRoute
+  '/professor/horario': typeof ProfessorHorarioRoute
+  '/professor/lancar-notas': typeof ProfessorLancarNotasRoute
+  '/professor/notas': typeof ProfessorNotasRoute
+  '/professor/perfil': typeof ProfessorPerfilRoute
+  '/professor/turmas': typeof ProfessorTurmasRouteWithChildren
   '/aluno/': typeof AlunoIndexRoute
+  '/professor/': typeof ProfessorIndexRoute
+  '/professor/turmas/$turmaId': typeof ProfessorTurmasTurmaIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -150,6 +221,7 @@ export interface FileRouteTypes {
     | '/aluno'
     | '/login'
     | '/privacidade'
+    | '/professor'
     | '/recuperar-senha'
     | '/termos'
     | '/aluno/faltas'
@@ -159,7 +231,14 @@ export interface FileRouteTypes {
     | '/aluno/propinas'
     | '/aluno/ranking'
     | '/aluno/trocar-senha'
+    | '/professor/horario'
+    | '/professor/lancar-notas'
+    | '/professor/notas'
+    | '/professor/perfil'
+    | '/professor/turmas'
     | '/aluno/'
+    | '/professor/'
+    | '/professor/turmas/$turmaId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -174,13 +253,21 @@ export interface FileRouteTypes {
     | '/aluno/propinas'
     | '/aluno/ranking'
     | '/aluno/trocar-senha'
+    | '/professor/horario'
+    | '/professor/lancar-notas'
+    | '/professor/notas'
+    | '/professor/perfil'
+    | '/professor/turmas'
     | '/aluno'
+    | '/professor'
+    | '/professor/turmas/$turmaId'
   id:
     | '__root__'
     | '/'
     | '/aluno'
     | '/login'
     | '/privacidade'
+    | '/professor'
     | '/recuperar-senha'
     | '/termos'
     | '/aluno/faltas'
@@ -190,7 +277,14 @@ export interface FileRouteTypes {
     | '/aluno/propinas'
     | '/aluno/ranking'
     | '/aluno/trocar-senha'
+    | '/professor/horario'
+    | '/professor/lancar-notas'
+    | '/professor/notas'
+    | '/professor/perfil'
+    | '/professor/turmas'
     | '/aluno/'
+    | '/professor/'
+    | '/professor/turmas/$turmaId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -198,6 +292,7 @@ export interface RootRouteChildren {
   AlunoRoute: typeof AlunoRouteWithChildren
   LoginRoute: typeof LoginRoute
   PrivacidadeRoute: typeof PrivacidadeRoute
+  ProfessorRoute: typeof ProfessorRouteWithChildren
   RecuperarSenhaRoute: typeof RecuperarSenhaRoute
   TermosRoute: typeof TermosRoute
 }
@@ -230,6 +325,13 @@ declare module '@tanstack/react-router' {
       path: '/privacidade'
       fullPath: '/privacidade'
       preLoaderRoute: typeof PrivacidadeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/professor': {
+      id: '/professor'
+      path: '/professor'
+      fullPath: '/professor'
+      preLoaderRoute: typeof ProfessorRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/recuperar-senha': {
@@ -302,6 +404,55 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AlunoTrocarSenhaRouteImport
       parentRoute: typeof AlunoRoute
     }
+    '/professor/': {
+      id: '/professor/'
+      path: '/'
+      fullPath: '/professor/'
+      preLoaderRoute: typeof ProfessorIndexRouteImport
+      parentRoute: typeof ProfessorRoute
+    }
+    '/professor/horario': {
+      id: '/professor/horario'
+      path: '/horario'
+      fullPath: '/professor/horario'
+      preLoaderRoute: typeof ProfessorHorarioRouteImport
+      parentRoute: typeof ProfessorRoute
+    }
+    '/professor/lancar-notas': {
+      id: '/professor/lancar-notas'
+      path: '/lancar-notas'
+      fullPath: '/professor/lancar-notas'
+      preLoaderRoute: typeof ProfessorLancarNotasRouteImport
+      parentRoute: typeof ProfessorRoute
+    }
+    '/professor/notas': {
+      id: '/professor/notas'
+      path: '/notas'
+      fullPath: '/professor/notas'
+      preLoaderRoute: typeof ProfessorNotasRouteImport
+      parentRoute: typeof ProfessorRoute
+    }
+    '/professor/perfil': {
+      id: '/professor/perfil'
+      path: '/perfil'
+      fullPath: '/professor/perfil'
+      preLoaderRoute: typeof ProfessorPerfilRouteImport
+      parentRoute: typeof ProfessorRoute
+    }
+    '/professor/turmas': {
+      id: '/professor/turmas'
+      path: '/turmas'
+      fullPath: '/professor/turmas'
+      preLoaderRoute: typeof ProfessorTurmasRouteImport
+      parentRoute: typeof ProfessorRoute
+    }
+    '/professor/turmas/$turmaId': {
+      id: '/professor/turmas/$turmaId'
+      path: '/$turmaId'
+      fullPath: '/professor/turmas/$turmaId'
+      preLoaderRoute: typeof ProfessorTurmasTurmaIdRouteImport
+      parentRoute: typeof ProfessorTurmasRoute
+    }
   }
 }
 
@@ -329,11 +480,46 @@ const AlunoRouteChildren: AlunoRouteChildren = {
 
 const AlunoRouteWithChildren = AlunoRoute._addFileChildren(AlunoRouteChildren)
 
+interface ProfessorTurmasRouteChildren {
+  ProfessorTurmasTurmaIdRoute: typeof ProfessorTurmasTurmaIdRoute
+}
+
+const ProfessorTurmasRouteChildren: ProfessorTurmasRouteChildren = {
+  ProfessorTurmasTurmaIdRoute: ProfessorTurmasTurmaIdRoute,
+}
+
+const ProfessorTurmasRouteWithChildren = ProfessorTurmasRoute._addFileChildren(
+  ProfessorTurmasRouteChildren,
+)
+
+interface ProfessorRouteChildren {
+  ProfessorHorarioRoute: typeof ProfessorHorarioRoute
+  ProfessorLancarNotasRoute: typeof ProfessorLancarNotasRoute
+  ProfessorNotasRoute: typeof ProfessorNotasRoute
+  ProfessorPerfilRoute: typeof ProfessorPerfilRoute
+  ProfessorTurmasRoute: typeof ProfessorTurmasRouteWithChildren
+  ProfessorIndexRoute: typeof ProfessorIndexRoute
+}
+
+const ProfessorRouteChildren: ProfessorRouteChildren = {
+  ProfessorHorarioRoute: ProfessorHorarioRoute,
+  ProfessorLancarNotasRoute: ProfessorLancarNotasRoute,
+  ProfessorNotasRoute: ProfessorNotasRoute,
+  ProfessorPerfilRoute: ProfessorPerfilRoute,
+  ProfessorTurmasRoute: ProfessorTurmasRouteWithChildren,
+  ProfessorIndexRoute: ProfessorIndexRoute,
+}
+
+const ProfessorRouteWithChildren = ProfessorRoute._addFileChildren(
+  ProfessorRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AlunoRoute: AlunoRouteWithChildren,
   LoginRoute: LoginRoute,
   PrivacidadeRoute: PrivacidadeRoute,
+  ProfessorRoute: ProfessorRouteWithChildren,
   RecuperarSenhaRoute: RecuperarSenhaRoute,
   TermosRoute: TermosRoute,
 }

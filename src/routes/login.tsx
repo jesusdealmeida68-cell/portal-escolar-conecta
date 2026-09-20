@@ -96,10 +96,11 @@ function LoginPage() {
     defaultValues: { identifier: "", password: "", remember: true },
   });
 
-  const onSubmit = async (_values: LoginValues) => {
+  const onSubmit = async (values: LoginValues) => {
     setSubmitting(true);
     await fakeAuthenticate();
-    navigate({ to: "/aluno" });
+    const ehProfessor = values.identifier.trim() === "141414" && values.password === "1212";
+    navigate({ to: ehProfessor ? "/professor" : "/aluno" });
   };
 
   const remember = watch("remember");
