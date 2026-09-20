@@ -32,8 +32,8 @@ export const Route = createFileRoute("/login")({
 });
 
 const loginSchema = z.object({
-  identifier: z.string().trim().min(1, "Introduz o teu número de BI ou código."),
-  password: z.string().min(1, "Introduz a tua palavra-passe."),
+  identifier: z.string(),
+  password: z.string(),
   remember: z.boolean(),
 });
 type LoginValues = z.infer<typeof loginSchema>;
