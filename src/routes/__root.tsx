@@ -120,11 +120,14 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  // Todas as páginas de /aluno partilham a mesma chave: o cabeçalho e a navegação não voltam a
+  // animar (nem perdem a posição do deslize) ao mudar de separador. As restantes rotas ficam como estavam.
+  const chave = pathname === "/aluno" || pathname.startsWith("/aluno/") ? "/aluno" : pathname;
 
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <div key={pathname} className="animate-in fade-in slide-in-from-bottom-2 duration-500 ease-out">
+      <div key={chave} className="animate-in fade-in slide-in-from-bottom-2 duration-500 ease-out">
         <Outlet />
       </div>
     </QueryClientProvider>

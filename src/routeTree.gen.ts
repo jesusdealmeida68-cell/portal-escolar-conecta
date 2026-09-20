@@ -10,14 +10,28 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AlunoRouteImport } from './routes/aluno'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as PrivacidadeRouteImport } from './routes/privacidade'
 import { Route as RecuperarSenhaRouteImport } from './routes/recuperar-senha'
 import { Route as TermosRouteImport } from './routes/termos'
+import { Route as AlunoIndexRouteImport } from './routes/aluno.index'
+import { Route as AlunoFaltasRouteImport } from './routes/aluno.faltas'
+import { Route as AlunoHorariosRouteImport } from './routes/aluno.horarios'
+import { Route as AlunoNotasRouteImport } from './routes/aluno.notas'
+import { Route as AlunoNotificacoesRouteImport } from './routes/aluno.notificacoes'
+import { Route as AlunoPropinasRouteImport } from './routes/aluno.propinas'
+import { Route as AlunoRankingRouteImport } from './routes/aluno.ranking'
+import { Route as AlunoTrocarSenhaRouteImport } from './routes/aluno.trocar-senha'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AlunoRoute = AlunoRouteImport.update({
+  id: '/aluno',
+  path: '/aluno',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -40,13 +54,62 @@ const TermosRoute = TermosRouteImport.update({
   path: '/termos',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AlunoIndexRoute = AlunoIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AlunoRoute,
+} as any)
+const AlunoFaltasRoute = AlunoFaltasRouteImport.update({
+  id: '/faltas',
+  path: '/faltas',
+  getParentRoute: () => AlunoRoute,
+} as any)
+const AlunoHorariosRoute = AlunoHorariosRouteImport.update({
+  id: '/horarios',
+  path: '/horarios',
+  getParentRoute: () => AlunoRoute,
+} as any)
+const AlunoNotasRoute = AlunoNotasRouteImport.update({
+  id: '/notas',
+  path: '/notas',
+  getParentRoute: () => AlunoRoute,
+} as any)
+const AlunoNotificacoesRoute = AlunoNotificacoesRouteImport.update({
+  id: '/notificacoes',
+  path: '/notificacoes',
+  getParentRoute: () => AlunoRoute,
+} as any)
+const AlunoPropinasRoute = AlunoPropinasRouteImport.update({
+  id: '/propinas',
+  path: '/propinas',
+  getParentRoute: () => AlunoRoute,
+} as any)
+const AlunoRankingRoute = AlunoRankingRouteImport.update({
+  id: '/ranking',
+  path: '/ranking',
+  getParentRoute: () => AlunoRoute,
+} as any)
+const AlunoTrocarSenhaRoute = AlunoTrocarSenhaRouteImport.update({
+  id: '/trocar-senha',
+  path: '/trocar-senha',
+  getParentRoute: () => AlunoRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/aluno': typeof AlunoRouteWithChildren
   '/login': typeof LoginRoute
   '/privacidade': typeof PrivacidadeRoute
   '/recuperar-senha': typeof RecuperarSenhaRoute
   '/termos': typeof TermosRoute
+  '/aluno/faltas': typeof AlunoFaltasRoute
+  '/aluno/horarios': typeof AlunoHorariosRoute
+  '/aluno/notas': typeof AlunoNotasRoute
+  '/aluno/notificacoes': typeof AlunoNotificacoesRoute
+  '/aluno/propinas': typeof AlunoPropinasRoute
+  '/aluno/ranking': typeof AlunoRankingRoute
+  '/aluno/trocar-senha': typeof AlunoTrocarSenhaRoute
+  '/aluno/': typeof AlunoIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,31 +117,85 @@ export interface FileRoutesByTo {
   '/privacidade': typeof PrivacidadeRoute
   '/recuperar-senha': typeof RecuperarSenhaRoute
   '/termos': typeof TermosRoute
+  '/aluno/faltas': typeof AlunoFaltasRoute
+  '/aluno/horarios': typeof AlunoHorariosRoute
+  '/aluno/notas': typeof AlunoNotasRoute
+  '/aluno/notificacoes': typeof AlunoNotificacoesRoute
+  '/aluno/propinas': typeof AlunoPropinasRoute
+  '/aluno/ranking': typeof AlunoRankingRoute
+  '/aluno/trocar-senha': typeof AlunoTrocarSenhaRoute
+  '/aluno': typeof AlunoIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/aluno': typeof AlunoRouteWithChildren
   '/login': typeof LoginRoute
   '/privacidade': typeof PrivacidadeRoute
   '/recuperar-senha': typeof RecuperarSenhaRoute
   '/termos': typeof TermosRoute
+  '/aluno/faltas': typeof AlunoFaltasRoute
+  '/aluno/horarios': typeof AlunoHorariosRoute
+  '/aluno/notas': typeof AlunoNotasRoute
+  '/aluno/notificacoes': typeof AlunoNotificacoesRoute
+  '/aluno/propinas': typeof AlunoPropinasRoute
+  '/aluno/ranking': typeof AlunoRankingRoute
+  '/aluno/trocar-senha': typeof AlunoTrocarSenhaRoute
+  '/aluno/': typeof AlunoIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/privacidade' | '/recuperar-senha' | '/termos'
+  fullPaths:
+    | '/'
+    | '/aluno'
+    | '/login'
+    | '/privacidade'
+    | '/recuperar-senha'
+    | '/termos'
+    | '/aluno/faltas'
+    | '/aluno/horarios'
+    | '/aluno/notas'
+    | '/aluno/notificacoes'
+    | '/aluno/propinas'
+    | '/aluno/ranking'
+    | '/aluno/trocar-senha'
+    | '/aluno/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/privacidade' | '/recuperar-senha' | '/termos'
-  id:
-    | '__root__'
+  to:
     | '/'
     | '/login'
     | '/privacidade'
     | '/recuperar-senha'
     | '/termos'
+    | '/aluno/faltas'
+    | '/aluno/horarios'
+    | '/aluno/notas'
+    | '/aluno/notificacoes'
+    | '/aluno/propinas'
+    | '/aluno/ranking'
+    | '/aluno/trocar-senha'
+    | '/aluno'
+  id:
+    | '__root__'
+    | '/'
+    | '/aluno'
+    | '/login'
+    | '/privacidade'
+    | '/recuperar-senha'
+    | '/termos'
+    | '/aluno/faltas'
+    | '/aluno/horarios'
+    | '/aluno/notas'
+    | '/aluno/notificacoes'
+    | '/aluno/propinas'
+    | '/aluno/ranking'
+    | '/aluno/trocar-senha'
+    | '/aluno/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AlunoRoute: typeof AlunoRouteWithChildren
   LoginRoute: typeof LoginRoute
   PrivacidadeRoute: typeof PrivacidadeRoute
   RecuperarSenhaRoute: typeof RecuperarSenhaRoute
@@ -92,6 +209,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/aluno': {
+      id: '/aluno'
+      path: '/aluno'
+      fullPath: '/aluno'
+      preLoaderRoute: typeof AlunoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -122,11 +246,92 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TermosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/aluno/': {
+      id: '/aluno/'
+      path: '/'
+      fullPath: '/aluno/'
+      preLoaderRoute: typeof AlunoIndexRouteImport
+      parentRoute: typeof AlunoRoute
+    }
+    '/aluno/faltas': {
+      id: '/aluno/faltas'
+      path: '/faltas'
+      fullPath: '/aluno/faltas'
+      preLoaderRoute: typeof AlunoFaltasRouteImport
+      parentRoute: typeof AlunoRoute
+    }
+    '/aluno/horarios': {
+      id: '/aluno/horarios'
+      path: '/horarios'
+      fullPath: '/aluno/horarios'
+      preLoaderRoute: typeof AlunoHorariosRouteImport
+      parentRoute: typeof AlunoRoute
+    }
+    '/aluno/notas': {
+      id: '/aluno/notas'
+      path: '/notas'
+      fullPath: '/aluno/notas'
+      preLoaderRoute: typeof AlunoNotasRouteImport
+      parentRoute: typeof AlunoRoute
+    }
+    '/aluno/notificacoes': {
+      id: '/aluno/notificacoes'
+      path: '/notificacoes'
+      fullPath: '/aluno/notificacoes'
+      preLoaderRoute: typeof AlunoNotificacoesRouteImport
+      parentRoute: typeof AlunoRoute
+    }
+    '/aluno/propinas': {
+      id: '/aluno/propinas'
+      path: '/propinas'
+      fullPath: '/aluno/propinas'
+      preLoaderRoute: typeof AlunoPropinasRouteImport
+      parentRoute: typeof AlunoRoute
+    }
+    '/aluno/ranking': {
+      id: '/aluno/ranking'
+      path: '/ranking'
+      fullPath: '/aluno/ranking'
+      preLoaderRoute: typeof AlunoRankingRouteImport
+      parentRoute: typeof AlunoRoute
+    }
+    '/aluno/trocar-senha': {
+      id: '/aluno/trocar-senha'
+      path: '/trocar-senha'
+      fullPath: '/aluno/trocar-senha'
+      preLoaderRoute: typeof AlunoTrocarSenhaRouteImport
+      parentRoute: typeof AlunoRoute
+    }
   }
 }
 
+interface AlunoRouteChildren {
+  AlunoFaltasRoute: typeof AlunoFaltasRoute
+  AlunoHorariosRoute: typeof AlunoHorariosRoute
+  AlunoNotasRoute: typeof AlunoNotasRoute
+  AlunoNotificacoesRoute: typeof AlunoNotificacoesRoute
+  AlunoPropinasRoute: typeof AlunoPropinasRoute
+  AlunoRankingRoute: typeof AlunoRankingRoute
+  AlunoTrocarSenhaRoute: typeof AlunoTrocarSenhaRoute
+  AlunoIndexRoute: typeof AlunoIndexRoute
+}
+
+const AlunoRouteChildren: AlunoRouteChildren = {
+  AlunoFaltasRoute: AlunoFaltasRoute,
+  AlunoHorariosRoute: AlunoHorariosRoute,
+  AlunoNotasRoute: AlunoNotasRoute,
+  AlunoNotificacoesRoute: AlunoNotificacoesRoute,
+  AlunoPropinasRoute: AlunoPropinasRoute,
+  AlunoRankingRoute: AlunoRankingRoute,
+  AlunoTrocarSenhaRoute: AlunoTrocarSenhaRoute,
+  AlunoIndexRoute: AlunoIndexRoute,
+}
+
+const AlunoRouteWithChildren = AlunoRoute._addFileChildren(AlunoRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AlunoRoute: AlunoRouteWithChildren,
   LoginRoute: LoginRoute,
   PrivacidadeRoute: PrivacidadeRoute,
   RecuperarSenhaRoute: RecuperarSenhaRoute,
