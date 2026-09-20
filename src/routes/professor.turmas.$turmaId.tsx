@@ -153,6 +153,7 @@ function SecaoDisciplinasNotas({ turma, alunos }: { turma: Turma; alunos: AlunoR
   const [trimestre, setTrimestre] = React.useState<string>(TRIMESTRES[0]);
   const [pesquisa, setPesquisa] = React.useState("");
   const [detalhe, setDetalhe] = React.useState<{ nota: NotaAluno; nomeAluno: string } | null>(null);
+  const [ficha, setFicha] = React.useState<AlunoResumo | null>(null);
 
   const termo = pesquisa.trim().toLowerCase();
   const alunosFiltrados = termo
@@ -238,15 +239,17 @@ function SecaoDisciplinasNotas({ turma, alunos }: { turma: Turma; alunos: AlunoR
             </div>
           ) : (
             <div className="overflow-x-auto">
-              <Table>
+              <Table className="min-w-max">
                 <TableHeader>
                   <TableRow>
-                    <TableHead className="sticky left-0 z-10 w-28 bg-card">Número</TableHead>
-                    <TableHead className="sticky left-28 z-10 min-w-40 bg-card">
+                    <TableHead className="sticky left-0 z-10 w-24 min-w-24 bg-card">
+                      Número
+                    </TableHead>
+                    <TableHead className="sticky left-24 z-10 min-w-44 bg-card">
                       Nome do aluno
                     </TableHead>
                     {turma.disciplinas.map((d) => (
-                      <TableHead key={d} className="text-center whitespace-nowrap">
+                      <TableHead key={d} className="min-w-28 text-center whitespace-nowrap">
                         {d}
                       </TableHead>
                     ))}
@@ -255,11 +258,17 @@ function SecaoDisciplinasNotas({ turma, alunos }: { turma: Turma; alunos: AlunoR
                 <TableBody>
                   {alunosFiltrados.map((aluno) => (
                     <TableRow key={aluno.numero}>
-                      <TableCell className="sticky left-0 z-10 bg-card font-mono text-xs text-muted-foreground">
+                      <TableCell className="sticky left-0 z-10 min-w-24 bg-card font-mono text-xs text-muted-foreground">
                         {aluno.numero}
                       </TableCell>
-                      <TableCell className="sticky left-28 z-10 min-w-40 bg-card font-semibold text-foreground">
-                        {aluno.nomeCompleto}
+                      <TableCell className="sticky left-24 z-10 min-w-44 bg-card p-0">
+                        <button
+                          type="button"
+                          onClick={() => setFicha(aluno)}
+                          className="w-full px-2 py-2 text-left font-semibold text-foreground underline-offset-2 hover:text-primary hover:underline focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+                        >
+                          {aluno.nomeCompleto}
+                        </button>
                       </TableCell>
                       {turma.disciplinas.map((disciplina) => {
                         const nota = notasPorDisciplina
@@ -274,7 +283,7 @@ function SecaoDisciplinasNotas({ turma, alunos }: { turma: Turma; alunos: AlunoR
                           return (
                             <TableCell
                               key={disciplina}
-                              className="text-center font-mono text-muted-foreground"
+                              className="min-w-28 text-center font-mono text-muted-foreground"
                               aria-label={`${disciplina}: nota ainda não lançada`}
                             >
                               —
@@ -284,7 +293,7 @@ function SecaoDisciplinasNotas({ turma, alunos }: { turma: Turma; alunos: AlunoR
 
                         const reprovado = nota.mediaTrimestral < 10;
                         return (
-                          <TableCell key={disciplina} className="text-center">
+                          <TableCell key={disciplina} className="min-w-28 text-center">
                             <button
                               type="button"
                               onClick={() => setDetalhe({ nota, nomeAluno: aluno.nomeCompleto })}
@@ -307,6 +316,70 @@ function SecaoDisciplinasNotas({ turma, alunos }: { turma: Turma; alunos: AlunoR
           )}
         </CardContent>
       </Card>
+
+      <Dialog open={!!ficha} onOpenChange={(open) => !open && setFicha(null)}>
+        <DialogContent>
+          {ficha && (
+            <>
+              <DialogHeader>
+                <DialogTitle>{ficha.nomeCompleto}</DialogTitle>
+                <DialogDescription>
+                  N.º {ficha.numero} · {turma.classe} · {turma.nome} · {turma.curso}
+                </DialogDescription>
+              </DialogHeader>
+              <div className="max-h-[60vh] overflow-y-auto pt-2">
+                <p className="mb-2 text-xs font-semibold text-muted-foreground">
+                  Médias de {trimestre.toLowerCase()}
+                </p>
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Disciplina</TableHead>
+                      <TableHead className="text-right">Média</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {turma.disciplinas.map((disciplina) => {
+                      const nota = notasPorDisciplina
+                        .get(disciplina)
+                        ?.find((n) => n.numeroAluno === ficha.numero);
+                      const semNota = !nota || nota.mediaTrimestral === null;
+                      return (
+                        <TableRow key={disciplina}>
+                          <TableCell className="font-semibold text-foreground">
+                            {disciplina}
+                          </TableCell>
+                          <TableCell className="text-right">
+                            {semNota ? (
+                              <span className="font-mono text-muted-foreground">—</span>
+                            ) : (
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  setFicha(null);
+                                  setDetalhe({ nota, nomeAluno: ficha.nomeCompleto });
+                                }}
+                                className={cn(
+                                  "rounded-md px-2 py-0.5 font-display text-sm font-extrabold underline-offset-2 hover:bg-accent hover:underline",
+                                  nota.mediaTrimestral! < 10
+                                    ? "text-destructive"
+                                    : "text-foreground",
+                                )}
+                              >
+                                {formatarMedia(nota.mediaTrimestral!)}
+                              </button>
+                            )}
+                          </TableCell>
+                        </TableRow>
+                      );
+                    })}
+                  </TableBody>
+                </Table>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
 
       <Dialog open={!!detalhe} onOpenChange={(open) => !open && setDetalhe(null)}>
         <DialogContent>
