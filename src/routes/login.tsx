@@ -20,10 +20,10 @@ import {
 export const Route = createFileRoute("/login")({
   head: () => ({
     meta: [
-      { title: "Entrar — Portal Escolar" },
-      { name: "description", content: "Acede à tua área escolar no Portal Escolar." },
-      { property: "og:title", content: "Entrar — Portal Escolar" },
-      { property: "og:description", content: "Acede à tua área escolar no Portal Escolar." },
+      { title: "Entrar — Huambo Calunga II" },
+      { name: "description", content: "Acede à tua área escolar no Huambo Calunga II." },
+      { property: "og:title", content: "Entrar — Huambo Calunga II" },
+      { property: "og:description", content: "Acede à tua área escolar no Huambo Calunga II." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],

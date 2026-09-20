@@ -6,10 +6,7 @@ import { AlunoProvider } from "@/lib/aluno/aluno-context";
 
 export const Route = createFileRoute("/aluno")({
   head: () => ({
-    meta: [
-      { title: "Área do Aluno — Portal Escolar" },
-      { name: "robots", content: "noindex" },
-    ],
+    meta: [{ title: "Área do Aluno — Huambo Calunga II" }, { name: "robots", content: "noindex" }],
   }),
   component: AlunoLayout,
 });

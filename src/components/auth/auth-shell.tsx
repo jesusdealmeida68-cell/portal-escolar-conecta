@@ -1,10 +1,11 @@
 import * as React from "react";
 import { Link } from "@tanstack/react-router";
-import { ArrowLeft, Eye, EyeOff, GraduationCap } from "lucide-react";
+import { ArrowLeft, Eye, EyeOff } from "lucide-react";
 
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import heroImage from "@/assets/portal-escolar-hero.jpg";
+import logoHuambo from "@/assets/logo-huambo-calunga.jpg";
 
 /**
  * Small brand mark shared with the public homepage header/footer.
@@ -14,24 +15,18 @@ import heroImage from "@/assets/portal-escolar-hero.jpg";
 export function AuthLogo({ inverse = false }: { inverse?: boolean }) {
   return (
     <div className="flex min-w-0 items-center gap-3">
-      <span
-        className={cn(
-          "grid size-10 shrink-0 place-items-center rounded-md",
-          inverse ? "bg-hero-foreground/12" : "bg-primary",
-        )}
-      >
-        <GraduationCap
-          className={inverse ? "text-hero-foreground" : "text-primary-foreground"}
-          aria-hidden="true"
-        />
-      </span>
+      <img
+        src={logoHuambo}
+        alt="Huambo Calunga II"
+        className="size-10 shrink-0 rounded-full object-cover ring-1 ring-black/5"
+      />
       <span
         className={cn(
           "truncate font-display text-lg font-extrabold",
           inverse ? "text-hero-foreground" : "text-foreground",
         )}
       >
-        Portal Escolar
+        Huambo Calunga II
       </span>
     </div>
   );
@@ -48,7 +43,7 @@ export function AuthTopBar({
   return (
     <header className="border-b border-border/70 bg-background/95 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-        <Link to={backTo} aria-label="Portal Escolar, início">
+        <Link to={backTo} aria-label="Huambo Calunga II, início">
           <AuthLogo />
         </Link>
         <Link

@@ -86,7 +86,7 @@ export function criarPdf(doc: DocumentoPdf): Uint8Array {
   p.cor(0.086, 0.196, 0.4);
   p.retangulo(0, 0, LARGURA, 92);
   p.cor(1, 1, 1);
-  p.texto("Portal Escolar", MARGEM, 38, 11);
+  p.texto("Huambo Calunga II", MARGEM, 38, 11);
   p.texto(doc.titulo, MARGEM, 68, 22, true);
 
   let y = 128;
@@ -112,7 +112,12 @@ export function criarPdf(doc: DocumentoPdf): Uint8Array {
     p.cor(0.91, 0.94, 0.98);
     p.retangulo(MARGEM, y - 14, larguraTabela, 24);
 
-    const desenharLinha = (celulas: string[], yLinha: number, negrito: boolean, tamanho: number) => {
+    const desenharLinha = (
+      celulas: string[],
+      yLinha: number,
+      negrito: boolean,
+      tamanho: number,
+    ) => {
       let x = MARGEM;
       colunas.forEach((coluna, i) => {
         const celula = celulas[i] ?? "";
@@ -223,7 +228,13 @@ export function gerarBoletimPdf(perfil: PerfilAluno, boletim: BoletimTrimestre):
         String(n.provaTrimestral),
         String(n.mediaTrimestral),
       ]),
-      rodape: ["Média do trimestre", "", "", "", boletim.media === null ? "-" : formatarMedia(boletim.media)],
+      rodape: [
+        "Média do trimestre",
+        "",
+        "",
+        "",
+        boletim.media === null ? "-" : formatarMedia(boletim.media),
+      ],
     },
     nota: NOTA_DEMO,
   });

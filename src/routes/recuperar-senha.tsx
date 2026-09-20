@@ -21,10 +21,13 @@ import {
 export const Route = createFileRoute("/recuperar-senha")({
   head: () => ({
     meta: [
-      { title: "Recuperar palavra-passe — Portal Escolar" },
-      { name: "description", content: "Recupera o acesso à tua conta do Portal Escolar." },
-      { property: "og:title", content: "Recuperar palavra-passe — Portal Escolar" },
-      { property: "og:description", content: "Recupera o acesso à tua conta do Portal Escolar." },
+      { title: "Recuperar palavra-passe — Huambo Calunga II" },
+      { name: "description", content: "Recupera o acesso à tua conta do Huambo Calunga II." },
+      { property: "og:title", content: "Recuperar palavra-passe — Huambo Calunga II" },
+      {
+        property: "og:description",
+        content: "Recupera o acesso à tua conta do Huambo Calunga II.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],

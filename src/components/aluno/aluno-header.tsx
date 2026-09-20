@@ -203,7 +203,7 @@ export function AlunoHeader() {
         <Link
           to="/aluno"
           className="flex min-w-0 items-center gap-3 rounded-md focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
-          aria-label="Portal Escolar, início da Área do Aluno"
+          aria-label="Huambo Calunga II, início da Área do Aluno"
         >
           <AuthLogo />
           <span className="hidden h-5 w-px bg-border sm:block" aria-hidden="true" />

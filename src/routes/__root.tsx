@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { PwaInstallManager } from "@/components/pwa/pwa-install-manager";
 
 function NotFoundComponent() {
   return (
@@ -77,12 +78,26 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   head: () => ({
     meta: [
       { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Portal Escolar" },
-      { name: "description", content: "Informação escolar pública, acessível e organizada." },
-      { name: "author", content: "Portal Escolar" },
-      { property: "og:title", content: "Portal Escolar" },
-      { property: "og:description", content: "Informação escolar pública, acessível e organizada." },
+      {
+        name: "viewport",
+        content: "width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover",
+      },
+      { title: "Huambo Calunga II — Portal Escolar" },
+      {
+        name: "description",
+        content: "Portal escolar do Complexo Escolar Privado Huambo Calunga II.",
+      },
+      { name: "author", content: "Huambo Calunga II" },
+      { name: "theme-color", content: "#1d3a66" },
+      { name: "mobile-web-app-capable", content: "yes" },
+      { name: "apple-mobile-web-app-capable", content: "yes" },
+      { name: "apple-mobile-web-app-status-bar-style", content: "black-translucent" },
+      { name: "apple-mobile-web-app-title", content: "Huambo Calunga II" },
+      { property: "og:title", content: "Huambo Calunga II — Portal Escolar" },
+      {
+        property: "og:description",
+        content: "Portal escolar do Complexo Escolar Privado Huambo Calunga II.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -93,8 +108,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap",
+      },
+      { rel: "manifest", href: "/manifest.webmanifest" },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+      { rel: "icon", href: "/favicon-16x16.png", type: "image/png", sizes: "16x16" },
+      { rel: "apple-touch-icon", href: "/icons/apple-touch-icon.png" },
     ],
   }),
   shellComponent: RootShell,
@@ -130,6 +152,7 @@ function RootComponent() {
       <div key={chave} className="animate-in fade-in slide-in-from-bottom-2 duration-500 ease-out">
         <Outlet />
       </div>
+      <PwaInstallManager />
     </QueryClientProvider>
   );
 }

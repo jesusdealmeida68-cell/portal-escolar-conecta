@@ -24,12 +24,12 @@ import sportsImage from "@/assets/noticia-desporto.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Portal Escolar — Educação, comunidade e futuro" },
+      { title: "Huambo Calunga II — Educação, comunidade e futuro" },
       {
         name: "description",
         content: "Consulta notícias, comunicados, eventos e informações públicas da nossa escola.",
       },
-      { property: "og:title", content: "Portal Escolar — Educação, comunidade e futuro" },
+      { property: "og:title", content: "Huambo Calunga II — Educação, comunidade e futuro" },
       { property: "og:description", content: "Informação da nossa escola num só lugar." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -77,21 +77,20 @@ const news = [
   },
 ];
 
+import logoHuambo from "@/assets/logo-huambo-calunga.jpg";
+
 function Logo({ inverse = false }: { inverse?: boolean }) {
   return (
     <div className="flex min-w-0 items-center gap-3">
-      <span
-        className={`grid size-10 shrink-0 place-items-center rounded-md ${inverse ? "bg-hero-foreground/12" : "bg-primary"}`}
-      >
-        <GraduationCap
-          className={inverse ? "text-hero-foreground" : "text-primary-foreground"}
-          aria-hidden="true"
-        />
-      </span>
+      <img
+        src={logoHuambo}
+        alt="Huambo Calunga II"
+        className="size-10 shrink-0 rounded-full object-cover ring-1 ring-black/5"
+      />
       <span
         className={`truncate font-display text-lg font-extrabold ${inverse ? "text-hero-foreground" : "text-foreground"}`}
       >
-        Portal Escolar
+        Huambo Calunga II
       </span>
     </div>
   );
@@ -108,7 +107,7 @@ function LoadingScreen() {
         <div className="mx-auto mb-6 grid size-20 place-items-center rounded-lg border border-hero-foreground/20 bg-hero-foreground/10">
           <GraduationCap className="size-10" />
         </div>
-        <h1 className="text-2xl font-extrabold">Portal Escolar</h1>
+        <h1 className="text-2xl font-extrabold">Huambo Calunga II</h1>
         <p className="mt-2 text-sm text-hero-foreground/70">Educar hoje. Transformar o futuro.</p>
         <div className="mx-auto mt-8 h-1 w-48 overflow-hidden rounded-full bg-hero-foreground/15">
           <div className="loading-bar h-full w-20 rounded-full bg-brand-soft" />
@@ -133,7 +132,7 @@ function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-border/70 bg-background/95 backdrop-blur">
       <div className="mx-auto flex h-18 max-w-7xl items-center justify-between gap-3 px-4 sm:px-6 lg:px-8">
-        <a href="#inicio" aria-label="Portal Escolar, início">
+        <a href="#inicio" aria-label="Huambo Calunga II, início">
           <Logo />
         </a>
         <nav className="hidden items-center gap-7 lg:flex" aria-label="Navegação principal">
@@ -443,7 +442,7 @@ function HomePage() {
                       administrativos autorizados. Nenhum comunicado real está ativo neste momento.
                     </p>
                     <p className="mt-4 text-xs font-semibold text-hero-foreground/60">
-                      Portal Escolar · Informação demonstrativa
+                      Huambo Calunga II · Informação demonstrativa
                     </p>
                   </div>
                 </div>
@@ -533,7 +532,7 @@ function Footer() {
       </div>
       <div className="border-t border-hero-foreground/10">
         <div className="mx-auto max-w-7xl px-4 py-5 text-xs text-hero-foreground/50 sm:px-6 lg:px-8">
-          © 2026 Portal Escolar. Todos os direitos reservados.
+          © 2026 Huambo Calunga II. Todos os direitos reservados.
         </div>
       </div>
     </footer>
